@@ -18,7 +18,7 @@ https://medium.com/codingthesmartway-com-blog/create-a-rest-api-with-json-server
 https://www.raspberrypi.org/downloads/ </br>
 https://www.amazon.com/SunFounder-Raspberry-Graphical-Programming-Electronic/dp/B06XWSVLL8/ref=pd_sim_21_3?_encoding=UTF8&pd_rd_i=B06XWSVLL8&pd_rd_r=B1NR6J3G3KG63S8NJY59&pd_rd_w=5m7Pa&pd_rd_wg=PeALN&psc=1&refRID=B1NR6J3G3KG63S8NJY59
 
-#### [Potential] Smart Car Algorthms
+#### [Potential] Smart Car Algorthms/Librarys
 https://www.analyticsvidhya.com/blog/2015/09/build-predictive-model-10-minutes-python/ </br>
 http://networkx.github.io/ </br>
 https://keras.io/

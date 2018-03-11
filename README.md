@@ -19,6 +19,6 @@ https://www.raspberrypi.org/downloads/
 https://www.amazon.com/SunFounder-Raspberry-Graphical-Programming-Electronic/dp/B06XWSVLL8/ref=pd_sim_21_3?_encoding=UTF8&pd_rd_i=B06XWSVLL8&pd_rd_r=B1NR6J3G3KG63S8NJY59&pd_rd_w=5m7Pa&pd_rd_wg=PeALN&psc=1&refRID=B1NR6J3G3KG63S8NJY59
 
 #### Security
-[Reverse Proxy for HTTPS] https://nginx.org/en/
+[Reverse Proxy for HTTPS] https://nginx.org/en/ </br>
 [CA and SSL Certs] https://www.wikihow.com/Be-Your-Own-Certificate-Authority
 

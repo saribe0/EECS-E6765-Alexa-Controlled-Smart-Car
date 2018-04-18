@@ -57,8 +57,9 @@ data = p.communicate()  # Get data from 'p terminal'.
  
 # Split IP text block into three, and divide the two containing IPs into words.
 ip_lines = data[0].splitlines()
-split_line_a = ip_lines[1].split()
-split_line_b = ip_lines[2].split()
+
+split_line_a = ip_lines[0].split()
+split_line_b = ip_lines[1].split()
  
 # con_type variables for the message text. ex) 'ethernet', 'wifi', etc.
 ip_type_a = connect_type(split_line_a)
@@ -76,8 +77,8 @@ my_ip_a = 'Your %s ip is %s' % (ip_type_a, ipaddr_a)
 my_ip_b = 'Your %s ip is %s' % (ip_type_b, ipaddr_b)
  
 # Creates the text, subject, 'from', and 'to' of the message.
-msg = MIMEText(my_ip_a + "\n\n" + my_ip_b)
-msg['Subject'] = 'IPs For Intel Edison on %s' % today.strftime('%b %d %Y')
+msg = MIMEText(my_ip_a + "\n\n" + my_ip_b + "\n\nUsername: pi\nPassword: abcd")
+msg['Subject'] = 'IPs For Raspberry Pi on %s' % today.strftime('%b %d %Y')
 msg['From'] = gmail_user
 msg['To'] = to1 + to2 + to3
 # Sends the message

@@ -42,7 +42,7 @@ def customCallback(client, userdata, message):
     
     # Parse the data and execute the command
     data = json.loads(message.payload)
-    logging.debug(views.run(data))
+    logging.debug(piCarCommands.run(data))
 
 
 # Read in command-line parameters

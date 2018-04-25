@@ -16,8 +16,8 @@ from django.http import HttpResponse
 import picar
 
 # Global Variabls
-SPEED = 60
-VALID_ACTIONS = set("fowrad", "backward")
+SPEED = 30
+VALID_ACTIONS = set(["forward", "backward", "stop", "set_speed", "turn_right", "turn_left", "turn_straight"])
 
 # Car Setup
 picar.setup()
@@ -34,7 +34,7 @@ carIsMoving = False
 # Handle Incoming Requests for Errors
 def run(request):
     global SPEED
-
+    
     # Handle speed updates
     if 'speed' in request:
         speedl = int(request['speed'])
@@ -51,7 +51,7 @@ def run(request):
 
     # Handle action requests
     if 'action' in request:
-        action = requst['action']
+        action = request['action']
         
         # Make sure the action is valid
         if action not in VALID_ACTIONS:
@@ -65,9 +65,10 @@ def run(request):
 def executeCommand(action, time=None):
     
     global SPEED
+    global carIsMoving
 
     # Move car forwards
-    if action == 'forward':
+    if action == 'backward':
         carIsMoving = True
         bw.speed = SPEED
         bw.forward()
@@ -76,7 +77,7 @@ def executeCommand(action, time=None):
             bw.stop()
 
     # Move car backwards
-    elif action == 'backward':
+    elif action == 'forward':
         carIsMoving = True
         bw.speed = SPEED
         bw.backward()
@@ -102,7 +103,8 @@ def executeCommand(action, time=None):
         fw.turn_straight()
     
     # Set speed
-    elif action == 'set_speed' && carIsMoving:
+    elif action == 'set_speed' and carIsMoving:
         bw.speed = SPEED
+
 
     return "Command Executed"

@@ -48,13 +48,14 @@ function buildHandlers (callback){
             var time, speechOutput;
             const intentObj = this.event.request.intent;
             time = intentObj.slots.time.value;
-            if (intentObj.slots.time.value) {
+            if (!isNaN(intentObj.slots.time.value)) {
                 speechOutput = "Moving forward for " + time + " seconds";
             }
             else{
                 speechOutput = "Moving forward";
+                time = null;
             }
-        
+    
             var request = {
                 action: action,
                 time: time
@@ -68,11 +69,12 @@ function buildHandlers (callback){
             var time, speechOutput;
             const intentObj = this.event.request.intent;
             time = intentObj.slots.time.value;
-            if (intentObj.slots.time.value) {
+            if (!isNaN(intentObj.slots.time.value)) {
                 speechOutput = "Moving backward for " + time + " seconds";
             }
             else{
                 speechOutput = "Moving backward";
+                time = null;
             }
         
             var request = {
@@ -89,21 +91,25 @@ function buildHandlers (callback){
             const action = "turn_";
 
             const intentObj = this.event.request.intent;
+            
             var opts = ["left","right","straight"];
             if (!intentObj.slots.direction.value){
                 speechOutput = 'Which direction? Left, right, or straight.';
                 reprompt = 'Left, right, or straight';
                 this.emit(":elicitSlot", 'direction', speechOutput, reprompt);
             }
+            if (opts.includes(intentObj.slots.direction.value)){
+                direction = intentObj.slots.direction.value;
+                speechOutput = "Turning " + direction;
+                var request = {
+                    action: action + direction
+                }; 
+                publishMessage(callback,request);
+            }
+            else{
+                speechOutput = "Invalid direction. Try the command again.";
+            }
 
-            direction = intentObj.slots.direction.value;
-
-            speechOutput = "Turning " + direction;
-            var request = {
-                action: action + direction
-            }; 
-            publishMessage(callback,request);
-            
             this.emit(":ask", speechOutput);
         },
         'HaltIntent': function () {
@@ -127,16 +133,18 @@ function buildHandlers (callback){
                 reprompt = "You can set the speed to a value between 0 and 100.";
                 this.emit(":elicitSlot", 'speed', speechOutput, reprompt);
             }
-            const speed = intentObj.slots.speed.value;
-            speechOutput = "Setting speed to " + speed;
-            
-            var request = {
-                action: action,
-                speed: speed
-            }; 
-            
-            publishMessage(callback,request);
-        
+            if (!isNaN(intentObj.slots.speed.value)){
+                const speed = intentObj.slots.speed.value;
+                speechOutput = "Setting speed to " + speed;
+                var request = {
+                    action: action,
+                    speed: speed
+                }; 
+                publishMessage(callback,request);
+            }
+            else{
+                speechOutput = "Not a number. Try the command again.";
+            }
             this.emit(":ask", speechOutput);
         },
         'AMAZON.HelpIntent': function () {

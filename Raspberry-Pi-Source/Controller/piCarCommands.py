@@ -1,13 +1,8 @@
 '''
-**********************************************************************
-* Filename    : views
-* Description : views for server
-* Author      : Cavon
-* Brand       : SunFounder
-* E-mail      : service@sunfounder.com
-* Website     : www.sunfounder.com
-* Update      : Cavon    2016-09-13    New release
-**********************************************************************
+Code leveraged from SunFounder code included with the car. Specifically,
+we use that code to determine how to interact with the car libraries and
+import the right items. We also use it to determine how to initialize the 
+car controls.
 '''
 
 from time import sleep
